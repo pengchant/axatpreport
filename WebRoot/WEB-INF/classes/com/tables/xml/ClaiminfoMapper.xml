@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jlc.dao.ClaiminfoMapper">
+  <resultMap id="BaseResultMap" type="com.jlc.bean.Claiminfo">
+    <id column="Case_id" jdbcType="INTEGER" property="caseId" />
+    <result column="casenumber" jdbcType="VARCHAR" property="casenumber" />
+    <result column="Customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="Casestep" jdbcType="INTEGER" property="casestep" />
+    <result column="AddressLine1" jdbcType="VARCHAR" property="addressline1" />
+    <result column="RepairShopID" jdbcType="VARCHAR" property="repairshopid" />
+    <result column="RepairShopName" jdbcType="VARCHAR" property="repairshopname" />
+    <result column="OtherLicensePlate" jdbcType="VARCHAR" property="otherlicenseplate" />
+    <result column="OtherReporter" jdbcType="VARCHAR" property="otherreporter" />
+    <result column="OtherPhone" jdbcType="VARCHAR" property="otherphone" />
+    <result column="Longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="Latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="LossLocationReason" jdbcType="VARCHAR" property="losslocationreason" />
+    <result column="surveysPeopleName" jdbcType="VARCHAR" property="surveyspeoplename" />
+    <result column="cellPhone" jdbcType="VARCHAR" property="cellphone" />
+    <result column="casetype" jdbcType="VARCHAR" property="casetype" />
+    <result column="Isfinished" jdbcType="INTEGER" property="isfinished" />
+    <result column="State" jdbcType="VARCHAR" property="state" />
+    <result column="City" jdbcType="VARCHAR" property="city" />
+    <result column="County" jdbcType="VARCHAR" property="county" />
+    <result column="reporterName" jdbcType="VARCHAR" property="reportername" />
+    <result column="LossDate" jdbcType="VARCHAR" property="lossdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Case_id, casenumber, Customerid, Casestep, AddressLine1, RepairShopID, RepairShopName, 
+    OtherLicensePlate, OtherReporter, OtherPhone, Longitude, Latitude, LossLocationReason, 
+    surveysPeopleName, cellPhone, casetype, Isfinished, State, City, County, reporterName, 
+    LossDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from claiminfo
+    where Case_id = #{caseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from claiminfo
+    where Case_id = #{caseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jlc.bean.Claiminfo">
+    insert into claiminfo (Case_id, casenumber, Customerid, 
+      Casestep, AddressLine1, RepairShopID, 
+      RepairShopName, OtherLicensePlate, OtherReporter, 
+      OtherPhone, Longitude, Latitude, 
+      LossLocationReason, surveysPeopleName, 
+      cellPhone, casetype, Isfinished, 
+      State, City, County, 
+      reporterName, LossDate)
+    values (#{caseId,jdbcType=INTEGER}, #{casenumber,jdbcType=VARCHAR}, #{customerid,jdbcType=INTEGER}, 
+      #{casestep,jdbcType=INTEGER}, #{addressline1,jdbcType=VARCHAR}, #{repairshopid,jdbcType=VARCHAR}, 
+      #{repairshopname,jdbcType=VARCHAR}, #{otherlicenseplate,jdbcType=VARCHAR}, #{otherreporter,jdbcType=VARCHAR}, 
+      #{otherphone,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{losslocationreason,jdbcType=VARCHAR}, #{surveyspeoplename,jdbcType=VARCHAR}, 
+      #{cellphone,jdbcType=VARCHAR}, #{casetype,jdbcType=VARCHAR}, #{isfinished,jdbcType=INTEGER}, 
+      #{state,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{reportername,jdbcType=VARCHAR}, #{lossdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jlc.bean.Claiminfo">
+    insert into claiminfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        Case_id,
+      </if>
+      <if test="casenumber != null">
+        casenumber,
+      </if>
+      <if test="customerid != null">
+        Customerid,
+      </if>
+      <if test="casestep != null">
+        Casestep,
+      </if>
+      <if test="addressline1 != null">
+        AddressLine1,
+      </if>
+      <if test="repairshopid != null">
+        RepairShopID,
+      </if>
+      <if test="repairshopname != null">
+        RepairShopName,
+      </if>
+      <if test="otherlicenseplate != null">
+        OtherLicensePlate,
+      </if>
+      <if test="otherreporter != null">
+        OtherReporter,
+      </if>
+      <if test="otherphone != null">
+        OtherPhone,
+      </if>
+      <if test="longitude != null">
+        Longitude,
+      </if>
+      <if test="latitude != null">
+        Latitude,
+      </if>
+      <if test="losslocationreason != null">
+        LossLocationReason,
+      </if>
+      <if test="surveyspeoplename != null">
+        surveysPeopleName,
+      </if>
+      <if test="cellphone != null">
+        cellPhone,
+      </if>
+      <if test="casetype != null">
+        casetype,
+      </if>
+      <if test="isfinished != null">
+        Isfinished,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="city != null">
+        City,
+      </if>
+      <if test="county != null">
+        County,
+      </if>
+      <if test="reportername != null">
+        reporterName,
+      </if>
+      <if test="lossdate != null">
+        LossDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        #{caseId,jdbcType=INTEGER},
+      </if>
+      <if test="casenumber != null">
+        #{casenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="casestep != null">
+        #{casestep,jdbcType=INTEGER},
+      </if>
+      <if test="addressline1 != null">
+        #{addressline1,jdbcType=VARCHAR},
+      </if>
+      <if test="repairshopid != null">
+        #{repairshopid,jdbcType=VARCHAR},
+      </if>
+      <if test="repairshopname != null">
+        #{repairshopname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherlicenseplate != null">
+        #{otherlicenseplate,jdbcType=VARCHAR},
+      </if>
+      <if test="otherreporter != null">
+        #{otherreporter,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphone != null">
+        #{otherphone,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="losslocationreason != null">
+        #{losslocationreason,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyspeoplename != null">
+        #{surveyspeoplename,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="casetype != null">
+        #{casetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isfinished != null">
+        #{isfinished,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="reportername != null">
+        #{reportername,jdbcType=VARCHAR},
+      </if>
+      <if test="lossdate != null">
+        #{lossdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jlc.bean.Claiminfo">
+    update claiminfo
+    <set>
+      <if test="casenumber != null">
+        casenumber = #{casenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null">
+        Customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="casestep != null">
+        Casestep = #{casestep,jdbcType=INTEGER},
+      </if>
+      <if test="addressline1 != null">
+        AddressLine1 = #{addressline1,jdbcType=VARCHAR},
+      </if>
+      <if test="repairshopid != null">
+        RepairShopID = #{repairshopid,jdbcType=VARCHAR},
+      </if>
+      <if test="repairshopname != null">
+        RepairShopName = #{repairshopname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherlicenseplate != null">
+        OtherLicensePlate = #{otherlicenseplate,jdbcType=VARCHAR},
+      </if>
+      <if test="otherreporter != null">
+        OtherReporter = #{otherreporter,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphone != null">
+        OtherPhone = #{otherphone,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        Longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        Latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="losslocationreason != null">
+        LossLocationReason = #{losslocationreason,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyspeoplename != null">
+        surveysPeopleName = #{surveyspeoplename,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        cellPhone = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="casetype != null">
+        casetype = #{casetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isfinished != null">
+        Isfinished = #{isfinished,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        City = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        County = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="reportername != null">
+        reporterName = #{reportername,jdbcType=VARCHAR},
+      </if>
+      <if test="lossdate != null">
+        LossDate = #{lossdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jlc.bean.Claiminfo">
+    update claiminfo
+    set casenumber = #{casenumber,jdbcType=VARCHAR},
+      Customerid = #{customerid,jdbcType=INTEGER},
+      Casestep = #{casestep,jdbcType=INTEGER},
+      AddressLine1 = #{addressline1,jdbcType=VARCHAR},
+      RepairShopID = #{repairshopid,jdbcType=VARCHAR},
+      RepairShopName = #{repairshopname,jdbcType=VARCHAR},
+      OtherLicensePlate = #{otherlicenseplate,jdbcType=VARCHAR},
+      OtherReporter = #{otherreporter,jdbcType=VARCHAR},
+      OtherPhone = #{otherphone,jdbcType=VARCHAR},
+      Longitude = #{longitude,jdbcType=VARCHAR},
+      Latitude = #{latitude,jdbcType=VARCHAR},
+      LossLocationReason = #{losslocationreason,jdbcType=VARCHAR},
+      surveysPeopleName = #{surveyspeoplename,jdbcType=VARCHAR},
+      cellPhone = #{cellphone,jdbcType=VARCHAR},
+      casetype = #{casetype,jdbcType=VARCHAR},
+      Isfinished = #{isfinished,jdbcType=INTEGER},
+      State = #{state,jdbcType=VARCHAR},
+      City = #{city,jdbcType=VARCHAR},
+      County = #{county,jdbcType=VARCHAR},
+      reporterName = #{reportername,jdbcType=VARCHAR},
+      LossDate = #{lossdate,jdbcType=VARCHAR}
+    where Case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+</mapper>

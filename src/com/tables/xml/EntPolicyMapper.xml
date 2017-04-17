@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jlc.dao.EntPolicyDao">
+	<sql id="entPolicy_columns">
+		EntPolicy.policy_id,
+		EntPolicy.ent_id,
+		EntPolicy.PrimaryPhone,
+		EntPolicy.voluntaryPolicyNumber,
+		EntPolicy.ctplPolicyNumber,
+		EntPolicy.insuredName,
+		EntPolicy.insuredBrandModel,
+		EntPolicy.agentCode,
+		EntPolicy.goodCustomer,
+		EntPolicy.isJoinGoodCustomer,
+		EntPolicy.localPeccancyZize,
+		EntPolicy.LicensePlate,
+		EntPolicy.engineNo,
+		EntPolicy.isdel
+	</sql>
+	<sql id="entPolicy_properties">
+		#{policyId},
+		#{EntId},
+		#{PrimaryPhone},
+		#{voluntaryPolicyNumber},
+		#{ctplPolicyNumber},
+		#{insuredName},
+		#{insuredBrandModel},
+		#{agentCode},
+		#{goodCustomer},
+		#{isJoinGoodCustomer},
+		#{localPeccancyZize},
+		#{LicensePlate},
+		#{engineNo},
+		#{isdel}
+	</sql>
+	<resultMap type="EntPolicy" id="EntPolicyResult">
+		<result property="policyId" column="policy_id"/>
+		<result property="EntId" column="ent_id"/>
+		<result property="PrimaryPhone" column="PrimaryPhone"/>
+		<result property="voluntaryPolicyNumber" column="voluntaryPolicyNumber"/>
+		<result property="ctplPolicyNumber" column="ctplPolicyNumber"/>
+		<result property="insuredName" column="insuredName"/>
+		<result property="insuredBrandModel" column="insuredBrandModel"/>
+		<result property="agentCode" column="agentCode"/>
+		<result property="goodCustomer" column="goodCustomer"/>
+		<result property="isJoinGoodCustomer" column="isJoinGoodCustomer"/>
+		<result property="localPeccancyZize" column="localPeccancyZize"/>
+		<result property="LicensePlate" column="LicensePlate"/>
+		<result property="engineNo" column="engineNo"/>
+		<result property="isdel" column="isdel"/>
+	</resultMap>
+	
+	<!-- 新增保单 -->
+	<insert id="createEntPolicy" parameterType="EntPolicy" useGeneratedKeys="true" keyColumn="policy_id" keyProperty="policyId">
+		INSERT INTO EntPolicy(<include refid="entPolicy_columns"/>)
+		VALUE(<include refid="entPolicy_properties"/>)
+	</insert>
+	<!-- 查询保单 -->
+	<select id="getEntPolicyInfo" parameterType="java.util.Map" resultMap="EntPolicyResult">
+		select <include refid="entPolicy_columns"/>
+		from EntPolicy
+		<where>
+			EntPolicy.isdel=#{e.isdel}
+			<if test="e.EntId>0">
+				and EntPolicy.ent_id=#{e.EntId}
+			</if>
+			<if test="e.LicensePlate!=null and e.LicensePlate!=''">
+				and EntPolicy.LicensePlate=#{e.LicensePlate}
+			</if>
+			<if test="e.insuredName!=null and e.insuredName!=''">
+				and EntPolicy.insuredName=#{e.insuredName}
+			</if>
+			<if test="e.PrimaryPhone!=null and e.PrimaryPhone!=''">
+				and EntPolicy.PrimaryPhone=#{e.PrimaryPhone}
+			</if>
+		</where>
+		<!-- 分页 -->
+		limit #{page.offsetPara,jdbcType=INTEGER} ,#{page.limitPara,jdbcType=INTEGER} 
+	</select>
+	<!-- 删除保单 -->
+	<update id="deleteEntPolicy" parameterType="java.util.Map">
+		UPDATE EntPolicy SET
+		EntPolicy.isdel=1
+		<where>
+			<if test="policyList!=null and policyList.size() !=0 ">
+		    	and EntPolicy.policy_id in 
+		    	<foreach collection="policyList" item="policyList" index="index"
+	            	open="(" close=")" separator=",">
+	            	#{policyList}
+	        	</foreach>
+		    </if>
+		</where>
+	</update>
+	<!-- 查看保单详情 -->
+	<select id="getEntPolicyInfoById" parameterType="int" resultMap="EntPolicyResult">
+		select <include refid="entPolicy_columns"/> from EntPolicy
+		where EntPolicy.policy_id=#{value}
+	</select>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jlc.dao.EnterPriseDao">
+	<sql id="enterprise_columns">
+		enterprise.ent_id,
+		enterprise.ent_code,
+		enterprise.password,
+		enterprise.ent_name
+	</sql>
+	<sql id="enterprise_properties">
+		#{EntId},
+		#{EntCode},
+		#{Password},
+		#{EntName}
+	</sql>
+	<resultMap type="com.jlc.bean.EnterPrise" id="EnterpriseResult">
+		<result property="EntId" column="ent_id"/>
+		<result property="EntCode" column="ent_code"/>
+		<result property="Password" column="password"/>
+		<result property="EntName" column="ent_name"/>
+	</resultMap>
+	
+	<!-- 用户登录 -->
+	<select id="getLoginEnt" parameterType="java.util.Map" resultMap="EnterpriseResult">
+		select <include refid="enterprise_columns"/> from enterprise
+		where enterprise.ent_code=#{username} and enterprise.password=#{password}
+	</select>
+</mapper>

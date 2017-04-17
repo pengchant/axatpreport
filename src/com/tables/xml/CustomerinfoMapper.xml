@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jlc.dao.CustomerinfoMapper">
+  <resultMap id="BaseResultMap" type="com.jlc.bean.Customerinfo">
+    <id column="Customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="Openid" jdbcType="VARCHAR" property="openid" />
+    <result column="PrimaryPhone" jdbcType="VARCHAR" property="primaryphone" />
+    <result column="voluntaryPolicyNumber" jdbcType="VARCHAR" property="voluntarypolicynumber" />
+    <result column="ctplPolicyNumber" jdbcType="VARCHAR" property="ctplpolicynumber" />
+    <result column="insuredName" jdbcType="VARCHAR" property="insuredname" />
+    <result column="insuredBrandModel" jdbcType="VARCHAR" property="insuredbrandmodel" />
+    <result column="agentCode" jdbcType="VARCHAR" property="agentcode" />
+    <result column="goodCustomer" jdbcType="VARCHAR" property="goodcustomer" />
+    <result column="isJoinGoodCustomer" jdbcType="VARCHAR" property="isjoingoodcustomer" />
+    <result column="localPeccancyZize" jdbcType="VARCHAR" property="localpeccancyzize" />
+    <result column="LicensePlate" jdbcType="VARCHAR" property="licenseplate" />
+    <result column="engineNo" jdbcType="VARCHAR" property="engineno" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Customerid, Openid, PrimaryPhone, voluntaryPolicyNumber, ctplPolicyNumber, insuredName, 
+    insuredBrandModel, agentCode, goodCustomer, isJoinGoodCustomer, localPeccancyZize, 
+    LicensePlate, engineNo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customerinfo
+    where Customerid = #{customerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customerinfo
+    where Customerid = #{customerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jlc.bean.Customerinfo">
+    insert into customerinfo (Customerid, Openid, PrimaryPhone, 
+      voluntaryPolicyNumber, ctplPolicyNumber, 
+      insuredName, insuredBrandModel, agentCode, 
+      goodCustomer, isJoinGoodCustomer, localPeccancyZize, 
+      LicensePlate, engineNo)
+    values (#{customerid,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{primaryphone,jdbcType=VARCHAR}, 
+      #{voluntarypolicynumber,jdbcType=VARCHAR}, #{ctplpolicynumber,jdbcType=VARCHAR}, 
+      #{insuredname,jdbcType=VARCHAR}, #{insuredbrandmodel,jdbcType=VARCHAR}, #{agentcode,jdbcType=VARCHAR}, 
+      #{goodcustomer,jdbcType=VARCHAR}, #{isjoingoodcustomer,jdbcType=VARCHAR}, #{localpeccancyzize,jdbcType=VARCHAR}, 
+      #{licenseplate,jdbcType=VARCHAR}, #{engineno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jlc.bean.Customerinfo">
+    insert into customerinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerid != null">
+        Customerid,
+      </if>
+      <if test="openid != null">
+        Openid,
+      </if>
+      <if test="primaryphone != null">
+        PrimaryPhone,
+      </if>
+      <if test="voluntarypolicynumber != null">
+        voluntaryPolicyNumber,
+      </if>
+      <if test="ctplpolicynumber != null">
+        ctplPolicyNumber,
+      </if>
+      <if test="insuredname != null">
+        insuredName,
+      </if>
+      <if test="insuredbrandmodel != null">
+        insuredBrandModel,
+      </if>
+      <if test="agentcode != null">
+        agentCode,
+      </if>
+      <if test="goodcustomer != null">
+        goodCustomer,
+      </if>
+      <if test="isjoingoodcustomer != null">
+        isJoinGoodCustomer,
+      </if>
+      <if test="localpeccancyzize != null">
+        localPeccancyZize,
+      </if>
+      <if test="licenseplate != null">
+        LicensePlate,
+      </if>
+      <if test="engineno != null">
+        engineNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerid != null">
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryphone != null">
+        #{primaryphone,jdbcType=VARCHAR},
+      </if>
+      <if test="voluntarypolicynumber != null">
+        #{voluntarypolicynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ctplpolicynumber != null">
+        #{ctplpolicynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="insuredname != null">
+        #{insuredname,jdbcType=VARCHAR},
+      </if>
+      <if test="insuredbrandmodel != null">
+        #{insuredbrandmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcode != null">
+        #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodcustomer != null">
+        #{goodcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="isjoingoodcustomer != null">
+        #{isjoingoodcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="localpeccancyzize != null">
+        #{localpeccancyzize,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseplate != null">
+        #{licenseplate,jdbcType=VARCHAR},
+      </if>
+      <if test="engineno != null">
+        #{engineno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jlc.bean.Customerinfo">
+    update customerinfo
+    <set>
+      <if test="openid != null">
+        Openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryphone != null">
+        PrimaryPhone = #{primaryphone,jdbcType=VARCHAR},
+      </if>
+      <if test="voluntarypolicynumber != null">
+        voluntaryPolicyNumber = #{voluntarypolicynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ctplpolicynumber != null">
+        ctplPolicyNumber = #{ctplpolicynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="insuredname != null">
+        insuredName = #{insuredname,jdbcType=VARCHAR},
+      </if>
+      <if test="insuredbrandmodel != null">
+        insuredBrandModel = #{insuredbrandmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcode != null">
+        agentCode = #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodcustomer != null">
+        goodCustomer = #{goodcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="isjoingoodcustomer != null">
+        isJoinGoodCustomer = #{isjoingoodcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="localpeccancyzize != null">
+        localPeccancyZize = #{localpeccancyzize,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseplate != null">
+        LicensePlate = #{licenseplate,jdbcType=VARCHAR},
+      </if>
+      <if test="engineno != null">
+        engineNo = #{engineno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Customerid = #{customerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jlc.bean.Customerinfo">
+    update customerinfo
+    set Openid = #{openid,jdbcType=VARCHAR},
+      PrimaryPhone = #{primaryphone,jdbcType=VARCHAR},
+      voluntaryPolicyNumber = #{voluntarypolicynumber,jdbcType=VARCHAR},
+      ctplPolicyNumber = #{ctplpolicynumber,jdbcType=VARCHAR},
+      insuredName = #{insuredname,jdbcType=VARCHAR},
+      insuredBrandModel = #{insuredbrandmodel,jdbcType=VARCHAR},
+      agentCode = #{agentcode,jdbcType=VARCHAR},
+      goodCustomer = #{goodcustomer,jdbcType=VARCHAR},
+      isJoinGoodCustomer = #{isjoingoodcustomer,jdbcType=VARCHAR},
+      localPeccancyZize = #{localpeccancyzize,jdbcType=VARCHAR},
+      LicensePlate = #{licenseplate,jdbcType=VARCHAR},
+      engineNo = #{engineno,jdbcType=VARCHAR}
+    where Customerid = #{customerid,jdbcType=INTEGER}
+  </update>
+</mapper>

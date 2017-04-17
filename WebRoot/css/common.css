@@ -1,0 +1,24 @@
+/*改写样式*/
+
+.layui-form-checked[lay-skin=primary] i {
+	border-color: #5F9AD6;
+	background-color: #5F9AD6;
+	color: #fff;
+}
+
+.layui-form-checkbox[lay-skin=primary]:hover i {
+	border-color: #5F9AD6;
+	color: #fff;
+}
+
+.layui-table th {
+    text-align: center;
+}
+
+.layui-table tbody td{
+	text-align: center;
+}
+
+.layui-table tbody tr{
+	height: 45px;
+}

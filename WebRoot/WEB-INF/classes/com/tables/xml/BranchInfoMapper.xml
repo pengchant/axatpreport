@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jlc.dao.BranchInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jlc.bean.BranchInfo">
+    <id column="Branch_id" jdbcType="INTEGER" property="branchId" />
+    <result column="Branch_nam" jdbcType="VARCHAR" property="branchNam" />
+    <result column="Branch_address" jdbcType="VARCHAR" property="branchAddress" />
+    <result column="serviceContent" jdbcType="VARCHAR" property="servicecontent" />
+    <result column="Telnumber" jdbcType="VARCHAR" property="telnumber" />
+    <result column="Wroktime" jdbcType="VARCHAR" property="wroktime" />
+    <result column="Longtitude" jdbcType="VARCHAR" property="longtitude" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Branch_id, Branch_nam, Branch_address, serviceContent, Telnumber, Wroktime, Longtitude
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from branch_info
+    where Branch_id = #{branchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from branch_info
+    where Branch_id = #{branchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jlc.bean.BranchInfo">
+    insert into branch_info (Branch_id, Branch_nam, Branch_address, 
+      serviceContent, Telnumber, Wroktime, 
+      Longtitude)
+    values (#{branchId,jdbcType=INTEGER}, #{branchNam,jdbcType=VARCHAR}, #{branchAddress,jdbcType=VARCHAR}, 
+      #{servicecontent,jdbcType=VARCHAR}, #{telnumber,jdbcType=VARCHAR}, #{wroktime,jdbcType=VARCHAR}, 
+      #{longtitude,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jlc.bean.BranchInfo">
+    insert into branch_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="branchId != null">
+        Branch_id,
+      </if>
+      <if test="branchNam != null">
+        Branch_nam,
+      </if>
+      <if test="branchAddress != null">
+        Branch_address,
+      </if>
+      <if test="servicecontent != null">
+        serviceContent,
+      </if>
+      <if test="telnumber != null">
+        Telnumber,
+      </if>
+      <if test="wroktime != null">
+        Wroktime,
+      </if>
+      <if test="longtitude != null">
+        Longtitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="branchNam != null">
+        #{branchNam,jdbcType=VARCHAR},
+      </if>
+      <if test="branchAddress != null">
+        #{branchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servicecontent != null">
+        #{servicecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="telnumber != null">
+        #{telnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wroktime != null">
+        #{wroktime,jdbcType=VARCHAR},
+      </if>
+      <if test="longtitude != null">
+        #{longtitude,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jlc.bean.BranchInfo">
+    update branch_info
+    <set>
+      <if test="branchNam != null">
+        Branch_nam = #{branchNam,jdbcType=VARCHAR},
+      </if>
+      <if test="branchAddress != null">
+        Branch_address = #{branchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servicecontent != null">
+        serviceContent = #{servicecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="telnumber != null">
+        Telnumber = #{telnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wroktime != null">
+        Wroktime = #{wroktime,jdbcType=VARCHAR},
+      </if>
+      <if test="longtitude != null">
+        Longtitude = #{longtitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jlc.bean.BranchInfo">
+    update branch_info
+    set Branch_nam = #{branchNam,jdbcType=VARCHAR},
+      Branch_address = #{branchAddress,jdbcType=VARCHAR},
+      serviceContent = #{servicecontent,jdbcType=VARCHAR},
+      Telnumber = #{telnumber,jdbcType=VARCHAR},
+      Wroktime = #{wroktime,jdbcType=VARCHAR},
+      Longtitude = #{longtitude,jdbcType=VARCHAR}
+    where Branch_id = #{branchId,jdbcType=INTEGER}
+  </update>
+</mapper>
